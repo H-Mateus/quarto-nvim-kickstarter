@@ -15,6 +15,12 @@ return {
       -- Save localoptions to session file
       vim.opt.sessionoptions:append 'localoptions'
       require('projections').setup {
+        workspaces = { -- Default workspaces to search for
+          { '~/Documents', { '.git' } }, -- Documents/dev is a workspace. patterns = { ".git" }
+          { '~/repos', {} }, -- An empty pattern list indicates that all subdirectories are considered projects
+          { '/mnt/b57480ca-5ec4-4912-b90b-3982312c5328/Dropbox (UK Dementia Research Institute)/backup/research', {} }, -- An empty pattern list indicates that all subdirectories are considered projects
+          '~/dev', -- dev is a workspace. default patterns is used (specified below)
+        },
         store_hooks = {
           pre = function()
             -- nvim-tree
