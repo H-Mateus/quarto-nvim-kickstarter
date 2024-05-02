@@ -294,7 +294,7 @@ wk.register({
   },
   f = {
     name = '[f]ind (telescope)',
-    f = { '<cmd>Telescope find_files<cr>', '[f]iles' },
+    f = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', '[f]iles' },
     h = { '<cmd>Telescope help_tags<cr>', '[h]elp' },
     k = { '<cmd>Telescope keymaps<cr>', '[k]eymaps' },
     r = { '<cmd>Telescope lsp_references<cr>', '[r]eferences' },
