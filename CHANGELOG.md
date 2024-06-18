@@ -1,5 +1,42 @@
 # Changelog
 
+## [3.9.0](https://github.com/jmbuhr/quarto-nvim-kickstarter/compare/v3.8.1...v3.9.0) (2024-05-18)
+
+
+### Features
+
+* kanagawa colorscheme ([a9995a0](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/a9995a0cecc5f16a041c1b5259b99bb91a8b6cdd))
+* oil.nvim to edit the filesystem as a buffer ([69b73eb](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/69b73ebb52ab5f794af31fa345aa590137045771))
+* virtual text for dap ([1bdaab3](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/1bdaab3f54ee03084e291bb7cf1b2fab37f7401a))
+
+
+### Bug Fixes
+
+* full screen image preview ([ef0bbee](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/ef0bbeee56434969a8c0c4cec86527a6e820c199))
+* no signcolumn for terminal windows ([bb3fa64](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/bb3fa644d6516b4fc060042c74878f1af81d0774))
+
+## [3.8.1](https://github.com/jmbuhr/quarto-nvim-kickstarter/compare/v3.8.0...v3.8.1) (2024-05-13)
+
+
+### Bug Fixes
+
+* terminal switching with vim-slime update ([919cc02](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/919cc02d816f496588ea9f7a9d7ef5122e9e71f0))
+
+## [3.8.0](https://github.com/jmbuhr/quarto-nvim-kickstarter/compare/v3.7.0...v3.8.0) (2024-05-03)
+
+
+### Features
+
+* add jupytext ([d31943c](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/d31943cbf8bddb9def4f1612761d2dac69c0ffeb))
+* clear all images keybind ([6bbe017](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/6bbe017e534f4c8e98df859a2a0102bb52304ec3))
+
+
+### Bug Fixes
+
+* Correct readme typo ([#109](https://github.com/jmbuhr/quarto-nvim-kickstarter/issues/109)) ([0cb40f2](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/0cb40f2aaf8e83f88765223f852406104cca12b1))
+* dap config ([f90111e](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/f90111e5ec95f550b7619a829cc752da59f08482))
+* only enable custom code cell highlights for nvim &gt;= 0.10. fixes [#110](https://github.com/jmbuhr/quarto-nvim-kickstarter/issues/110) ([a5ad7e1](https://github.com/jmbuhr/quarto-nvim-kickstarter/commit/a5ad7e1d83981d1991dc7d486924a64741630c39))
+
 ## [3.7.0](https://github.com/jmbuhr/quarto-nvim-kickstarter/compare/v3.6.0...v3.7.0) (2024-04-15)
 
 

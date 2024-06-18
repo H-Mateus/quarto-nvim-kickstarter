@@ -117,6 +117,26 @@ return {
     opts = { signs = false },
   },
 
+  { -- edit the file system as a buffer
+    'stevearc/oil.nvim',
+    opts = {
+      keymaps = {
+        ['<C-s>'] = false,
+        ['<C-h>'] = false,
+        ['<C-l>'] = false,
+      },
+      view_options = {
+        show_hidden = true,
+      },
+    },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '-', ':Oil<cr>', desc = 'oil' },
+      { '<leader>ef', ':Oil<cr>', desc = 'edit [f]iles' },
+    },
+    cmd = 'Oil',
+  },
+
   { -- statusline
     -- PERF: I found this to slow down the editor
     'nvim-lualine/lualine.nvim',
@@ -366,7 +386,7 @@ return {
 
       local function get_image_at_cursor(buf)
         local images = image.get_images { buffer = buf }
-        local row = vim.api.nvim_win_get_cursor(0)[1]
+        local row = vim.api.nvim_win_get_cursor(0)[1] - 1
         for _, img in ipairs(images) do
           if img.geometry ~= nil and img.geometry.y == row then
             local og_max_height = img.global_state.options.max_height_window_percentage

@@ -273,7 +273,6 @@ wk.register({
   ['<cr>'] = { send_cell, 'run code cell' },
   c = {
     name = '[c]ode / [c]ell / [c]hunk',
-    c = { ':SlimeConfig<cr>', 'slime [c]onfig' },
     n = { new_terminal_shell, '[n]ew terminal with shell' },
     r = {
       function()
@@ -285,12 +284,15 @@ wk.register({
     p = { new_terminal_python, 'new [p]ython terminal' },
     i = { new_terminal_ipython, 'new [i]python terminal' },
     j = { new_terminal_julia, 'new [j]ulia terminal' },
-    o = {
-      name = '[o]open code chunk',
-    },
+  },
+  e = {
+    name = '[e]dit',
   },
   d = {
     name = '[d]ebug',
+    t = {
+      name = '[t]est',
+    },
   },
   f = {
     name = '[f]ind (telescope)',
