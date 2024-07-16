@@ -1,5 +1,6 @@
 -- required in which-key plugin spec in plugins/ui.lua as `require 'config.keymap'`
 local wk = require 'which-key'
+local ms = vim.lsp.protocol.Methods
 
 P = vim.print
 
@@ -24,6 +25,9 @@ end
 
 -- move in command line
 cmap('<C-a>', '<Home>')
+
+-- exit insert mode with jk
+imap('jk', '<esc>')
 
 -- save with ctrl+s
 imap('<C-s>', '<esc>:update<cr><esc>')
@@ -268,6 +272,29 @@ local function new_terminal_shell()
   new_terminal '$SHELL'
 end
 
+local function get_otter_symbols_lang()
+  local otterkeeper = require'otter.keeper'
+  local main_nr = vim.api.nvim_get_current_buf()
+  local langs = {}
+  for i,l in ipairs(otterkeeper.rafts[main_nr].languages) do
+    langs[i] = i .. ': ' .. l
+  end
+  -- promt to choose one of langs
+  local i = vim.fn.inputlist(langs)
+  local lang = otterkeeper.rafts[main_nr].languages[i]
+  local params = {
+    textDocument = vim.lsp.util.make_text_document_params(),
+    otter = {
+      lang = lang
+    }
+  }
+  -- don't pass a handler, as we want otter to use it's own handlers
+  vim.lsp.buf_request(main_nr, ms.textDocument_documentSymbol, params, nil)
+end
+
+vim.keymap.set("n", "<leader>os", get_otter_symbols_lang, {desc = "otter [s]ymbols"})
+
+
 -- normal mode with <leader>
 wk.register({
   ['<cr>'] = { send_cell, 'run code cell' },
@@ -299,13 +326,11 @@ wk.register({
     f = { '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', '[f]iles' },
     h = { '<cmd>Telescope help_tags<cr>', '[h]elp' },
     k = { '<cmd>Telescope keymaps<cr>', '[k]eymaps' },
-    r = { '<cmd>Telescope lsp_references<cr>', '[r]eferences' },
     g = { '<cmd>Telescope live_grep<cr>', '[g]rep' },
     b = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', '[b]uffer fuzzy find' },
     m = { '<cmd>Telescope marks<cr>', '[m]arks' },
     M = { '<cmd>Telescope man_pages<cr>', '[M]an pages' },
     c = { '<cmd>Telescope git_commits<cr>', 'git [c]ommits' },
-    s = { '<cmd>Telescope lsp_document_symbols<cr>', 'document [s]ymbols' },
     ['<space>'] = { '<cmd>Telescope buffers<cr>', '[ ] buffers' },
     d = { '<cmd>Telescope buffers<cr>', '[d] buffers' },
     q = { '<cmd>Telescope quickfix<cr>', '[q]uickfix' },
@@ -347,21 +372,26 @@ wk.register({
   },
   l = {
     name = '[l]anguage/lsp',
-    r = { '<cmd>Telescope lsp_references<cr>', '[r]eferences' },
+    r = { vim.lsp.buf.references, '[r]eferences' },
     R = { '[R]ename' },
     D = { vim.lsp.buf.type_definition, 'type [D]efinition' },
     a = { vim.lsp.buf.code_action, 'code [a]ction' },
     e = { vim.diagnostic.open_float, 'diagnostics (show hover [e]rror)' },
     d = {
       name = '[d]iagnostics',
-      d = { vim.diagnostic.disable, '[d]isable' },
+      d = {
+        function()
+          vim.diagnostic.enable(false)
+        end,
+        '[d]isable',
+      },
       e = { vim.diagnostic.enable, '[e]nable' },
     },
     g = { ':Neogen<cr>', 'neo[g]en docstring' },
   },
   o = {
     name = '[o]tter & c[o]de',
-    a = { require('otter').dev_setup, 'otter [a]ctivate' },
+    a = { require('otter').activate, 'otter [a]ctivate' },
     d = { require('otter').deactivate, 'otter [d]eactivate' },
     c = { 'O# %%<cr>', 'magic [c]omment code chunk # %%' },
     r = { insert_r_chunk, '[r] code chunk' },
