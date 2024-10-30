@@ -96,10 +96,10 @@ return {
             require('telescope.themes').get_dropdown(),
           },
           fzf = {
-            fuzzy = true, -- false will only do exact matching
+            fuzzy = true,                   -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = 'smart_case',       -- or "ignore_case" or "respect_case"
           },
         },
       }
@@ -130,7 +130,7 @@ return {
     },
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-      { '-', ':Oil<cr>', desc = 'oil' },
+      { '-',          ':Oil<cr>', desc = 'oil' },
       { '<leader>ef', ':Oil<cr>', desc = 'edit [f]iles' },
     },
     cmd = 'Oil',
@@ -191,6 +191,11 @@ return {
     enabled = false,
   },
 
+  {
+    "NStefan002/screenkey.nvim",
+    lazy = false,
+  },
+
   { -- filetree
     'nvim-tree/nvim-tree.lua',
     enabled = true,
@@ -242,12 +247,25 @@ return {
   },
 
   { -- show tree of symbols in the current file
-    'simrat39/symbols-outline.nvim',
-    cmd = 'SymbolsOutline',
+    'hedyhli/outline.nvim',
+    cmd = 'Outline',
     keys = {
-      { '<leader>lo', ':SymbolsOutline<cr>', desc = 'symbols outline' },
+      { '<leader>lo', ':Outline<cr>', desc = 'symbols outline' },
     },
-    opts = {},
+    opts = {
+      providers = {
+        priority = { 'markdown', 'lsp',  'norg' },
+        -- Configuration for each provider (3rd party providers are supported)
+        lsp = {
+          -- Lsp client names to ignore
+          blacklist_clients = {},
+        },
+        markdown = {
+          -- List of supported ft's to use the markdown provider
+          filetypes = { 'markdown', 'quarto' },
+        },
+      },
+    },
   },
 
   { -- or show symbols in the current file as breadcrumbs
@@ -334,6 +352,13 @@ return {
     enabled = true,
     dev = false,
     ft = { 'markdown', 'quarto', 'vimwiki' },
+    cond = function()
+      -- Disable on Windows system
+       return vim.fn.has 'win32' ~= 1 
+    end,
+    dependencies = {
+       'leafo/magick', -- that's a lua rock
+    },
     config = function()
       -- Requirements
       -- https://github.com/3rd/image.nvim?tab=readme-ov-file#requirements
@@ -343,7 +368,7 @@ return {
       -- sudo apt install libmagickwand-dev
       -- sudo apt install liblua5.1-0-dev
       -- sudo apt install lua5.1
-      -- sudo apt installl luajit
+      -- sudo apt install luajit
 
       local image = require 'image'
       image.setup {
@@ -352,12 +377,12 @@ return {
           markdown = {
             enabled = true,
             only_render_image_at_cursor = true,
+            -- only_render_image_at_cursor_mode = "popup",
             filetypes = { 'markdown', 'vimwiki', 'quarto' },
           },
         },
         editor_only_render_when_focused = false,
         window_overlap_clear_enabled = true,
-        -- window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', 'scrollview' },
         tmux_show_only_in_active_window = true,
         window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', 'scrollview', 'scrollview_sign' },
         max_width = nil,
