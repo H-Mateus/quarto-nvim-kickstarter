@@ -383,5 +383,20 @@ wk.add({
     { "<leader>vt", toggle_light_dark_theme, desc = "[t]oggle light/dark theme" },
     { "<leader>x", group = "e[x]ecute" },
     { "<leader>xx", ":w<cr>:source %<cr>", desc = "[x] source %" },
+    -- Window management
+    { "<leader>w", group = "[w]indow" },
+    { "<leader>ws", "<C-w>s", desc = "Split Horizontal" },
+    { "<leader>wv", "<C-w>v", desc = "Split Vertical" },
+    { "<leader>wh", "<C-w>h", desc = "Move Left" },
+    { "<leader>wl", "<C-w>l", desc = "Move Right" },
+    { "<leader>wk", "<C-w>k", desc = "Move Up" },
+    { "<leader>wj", "<C-w>j", desc = "Move Down" },
+    { "<leader>wc", "<C-w>c", desc = "Close Window" },
+    { "<leader>wo", "<C-w>o", desc = "Close Others" },
+    { "<leader>w=", "<C-w>=", desc = "Equalize Sizes" },
+    { "<leader>w+", "<C-w>+", desc = "Increase Height" },
+    { "<leader>w-", "<C-w>-", desc = "Decrease Height" },
+    { "<leader>w>", "<C-w>>", desc = "Increase Width" },
+    { "<leader>w<", "<C-w><", desc = "Decrease Width" },
   }
 }, { mode = 'n'})
