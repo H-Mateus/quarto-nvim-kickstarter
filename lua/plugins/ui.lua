@@ -133,7 +133,6 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '-',          ':Oil<cr>', desc = 'oil' },
-      { '<leader>ef', ':Oil<cr>', desc = 'edit [f]iles' },
     },
     cmd = 'Oil',
   },
