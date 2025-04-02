@@ -381,6 +381,12 @@ vim.keymap.set("n", "<leader>os", get_otter_symbols_lang, {desc = "otter [s]ymbo
 wk.add({
   {
     { "<leader><cr>", send_cell, desc = "run code cell" },
+    { "<leader>b", group = "[b]uffers" },
+    { "<leader>bc", ":bp|bd #<CR>", desc = "[c]lose current buffer" },
+    { "<leader>bn", ":bnext<CR>", desc = "[n]ext buffer" },
+    { "<leader>bp", ":bprevious<CR>", desc = "[p]revious buffer" },
+    { "<leader>bl", ":ls<CR>", desc = "[l]ist buffers" },
+    { "<leader>bk", ":%bd|e#|bd#<CR>", desc = "[k]ill all other buffers" },
     { "<leader>c", group = "[c]ode / [c]ell / [c]hunk" },
     { "<leader>ci", new_terminal_ipython, desc = "new [i]python terminal" },
     { "<leader>cj", new_terminal_julia, desc = "new [j]ulia terminal" },
